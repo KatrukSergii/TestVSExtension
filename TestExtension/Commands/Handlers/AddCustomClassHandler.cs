@@ -9,6 +9,7 @@ using Microsoft;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using NuGet.VisualStudio;
 using SampleInjector;
 using TestExtension;
 using ViewModel;
@@ -48,12 +49,14 @@ namespace TextExtension.Commands.Handlers
 				int res = solService.GetSolutionInfo(out string solutionDirectory, out string solutionFile, out string userOptsFile);
 				ISampleInjector sampleInjector = InversionContainer.Instance.Reslove<ISampleInjector>();
 
-				//DTE dte = await this.package.GetServiceAsync(typeof(DTE)) as DTE;
-				//Projects projects = dte.Solution.Projects;
-				//foreach(Project proj in projects)
-				//{ 
-				//	packageInstaller.InstallLatestPackage(null, proj, "DocuSign.eSign.dll", false, false);
-				//}
+				DTE dte = await this.package.GetServiceAsync(typeof(DTE)) as DTE;
+				var componentModel = await this.package.GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
+				var packageInstaller = componentModel.GetService<IVsPackageInstaller2>();
+				Projects projects = dte.Solution.Projects;
+				foreach(Project proj in projects)
+				{ 
+					packageInstaller.InstallLatestPackage(null, proj, "DocuSign.eSign.dll", false, false);
+				}
 
 				await sampleInjector.InjectSample(vm.SelectedClass, solutionFile);
 
