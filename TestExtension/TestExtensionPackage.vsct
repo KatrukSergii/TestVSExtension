@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+
+  <Commands package="guidVSIXProject2Package">
+
+    <Menus>
+      <Menu guid="guidVSIXProject2PackageCmdSet" id="TopLevelMenu" type="Menu" priority="0x700">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>Test extension</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <Groups>
+      <Group guid="guidVSIXProject2PackageCmdSet" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidVSIXProject2PackageCmdSet" id="TopLevelMenu" />
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidVSIXProject2PackageCmdSet" id="Command1Id" priority="0x0100" type="Button">
+        <Parent guid="guidVSIXProject2PackageCmdSet" id="MyMenuGroup" />
+        <Strings>
+          <ButtonText>Invoke Command1</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidVSIXProject2Package" value="{445e1ffe-6736-44f2-ae6d-f26aada9b45d}" />
+
+    <GuidSymbol name="guidVSIXProject2PackageCmdSet" value="{aa2f00ca-b4bd-4532-baa7-a2faf6349f63}">
+      <IDSymbol name="TopLevelMenu" value="0x1200" />
+      <IDSymbol name="MyMenuGroup" value="0x1210" />
+      <IDSymbol name="Command1Id" value="0x1220" />
+    </GuidSymbol>
+
+  </Symbols>
+</CommandTable>
