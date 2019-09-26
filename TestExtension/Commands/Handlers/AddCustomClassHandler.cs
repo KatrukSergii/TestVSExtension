@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 using EnvDTE;
 using Microsoft;
 using Microsoft.VisualStudio.ComponentModelHost;
@@ -38,29 +39,40 @@ namespace TextExtension.Commands.Handlers
 		public override async Task ExecuteAsync()
 		{
 			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+			DTE dte = await this.package.GetServiceAsync(typeof(DTE)) as DTE;
 			SelectClassToInsertWindow window = new SelectClassToInsertWindow();
 			var vm = new AddClassViewModel(new WindowViewService(window));
 			window.DataContext = vm;
-			var result = window.ShowDialog();
-			if(result == true)
+			var result = this.ShowDialog(window, dte);
+			if (result)
 			{
 				var solService = await this.package.GetServiceAsync(typeof(SVsSolution)) as IVsSolution;
 				Assumes.Present(solService);
 				int res = solService.GetSolutionInfo(out string solutionDirectory, out string solutionFile, out string userOptsFile);
 				ISampleInjector sampleInjector = InversionContainer.Instance.Reslove<ISampleInjector>();
 
-				DTE dte = await this.package.GetServiceAsync(typeof(DTE)) as DTE;
 				var componentModel = await this.package.GetServiceAsync(typeof(SComponentModel)) as IComponentModel;
 				var packageInstaller = componentModel.GetService<IVsPackageInstaller2>();
 				Projects projects = dte.Solution.Projects;
-				foreach(Project proj in projects)
-				{ 
+				foreach (Project proj in projects)
+				{
 					packageInstaller.InstallLatestPackage(null, proj, "DocuSign.eSign.dll", false, false);
 				}
 
 				await sampleInjector.InjectSample(vm.SelectedClass, solutionFile);
 
 			}
+		}
+
+		public bool ShowDialog(System.Windows.Window dialog, DTE dte)
+		{
+			var hwnd = dte.MainWindow.HWnd;
+
+			var helper = new WindowInteropHelper(dialog);
+
+			helper.Owner = new IntPtr(hwnd);
+
+			return dialog.ShowDialog() ?? false;
 		}
 	}
 }
