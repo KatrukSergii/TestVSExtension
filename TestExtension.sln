@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfComponents", "WpfCompone
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{DD998535-EDC3-424D-AB35-A86853B163CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleInjector", "SampleInjector\SampleInjector.csproj", "{99180204-502D-4D5C-A7C4-3FCB2414919B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DD998535-EDC3-424D-AB35-A86853B163CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD998535-EDC3-424D-AB35-A86853B163CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD998535-EDC3-424D-AB35-A86853B163CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99180204-502D-4D5C-A7C4-3FCB2414919B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99180204-502D-4D5C-A7C4-3FCB2414919B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99180204-502D-4D5C-A7C4-3FCB2414919B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99180204-502D-4D5C-A7C4-3FCB2414919B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

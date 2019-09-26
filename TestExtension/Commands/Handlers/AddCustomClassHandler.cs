@@ -9,6 +9,8 @@ using Microsoft;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using SampleInjector;
+using TestExtension;
 using ViewModel;
 using VSIXProject2;
 using VSIXProject2.Commands.Handlers;
@@ -42,8 +44,9 @@ namespace TextExtension.Commands.Handlers
 			if(result == true)
 			{
 				var solService = await this.package.GetServiceAsync(typeof(SVsSolution)) as IVsSolution;
+				Assumes.Present(solService);
 				int res = solService.GetSolutionInfo(out string solutionDirectory, out string solutionFile, out string userOptsFile);
-				//ISampleInjector sampleInjector = InversionContainer.Instance.Reslove<ISampleInjector>();
+				ISampleInjector sampleInjector = InversionContainer.Instance.Reslove<ISampleInjector>();
 
 				//DTE dte = await this.package.GetServiceAsync(typeof(DTE)) as DTE;
 				//Projects projects = dte.Solution.Projects;
@@ -52,7 +55,7 @@ namespace TextExtension.Commands.Handlers
 				//	packageInstaller.InstallLatestPackage(null, proj, "DocuSign.eSign.dll", false, false);
 				//}
 
-				//await sampleInjector.InjectSample(vm.SelectedClass, solutionFile);
+				await sampleInjector.InjectSample(vm.SelectedClass, solutionFile);
 
 			}
 		}
