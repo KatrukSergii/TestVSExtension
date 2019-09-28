@@ -3,6 +3,7 @@ using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using SampleInjector;
+using SampleInjector.Interface;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Interop;
@@ -44,7 +45,7 @@ namespace TextExtension.Commands.Handlers
 				int res = solService.GetSolutionInfo(out string solutionDirectory, out string solutionFile, out string userOptsFile);
 				ISampleInjector sampleInjector = InversionContainer.Instance.Reslove<ISampleInjector>();
 				
-				await sampleInjector.InjectSample(vm.SelectedClass, solutionFile, this.package);
+				await sampleInjector.InjectSampleAsync(vm.SelectedClass, solutionFile, this.package);
 
 			}
 		}

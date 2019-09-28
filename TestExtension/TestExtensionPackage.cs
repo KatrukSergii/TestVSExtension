@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell;
 using SampleInjector;
+using SampleInjector.Interface;
 using TextExtension.Commands;
 using Task = System.Threading.Tasks.Task;
 
