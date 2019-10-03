@@ -5,8 +5,7 @@ import * as cp from 'child_process';
 import * as rpc from 'vscode-jsonrpc';
 
 export function activate(context: vscode.ExtensionContext) {
-	let dotnnetExe = "dotnet";
-	let procPath = "C:\\temp\\ConsoleAppJSONRPCTest\\ConsoleAppJSONRPCTest.exe";
+	let procPath = "c:\\Git\\TestVSExtension\\JsonRPCServer\\bin\\Debug\\netcoreapp3.0\\JsonRPCServer.exe";
 	let childProcess = cp.spawn(procPath);
 	
 	// Use stdin and stdout for communication:
@@ -16,11 +15,6 @@ export function activate(context: vscode.ExtensionContext) {
  
 	connection.listen();			
 	const writeEmitter = new vscode.EventEmitter<string>();
-	connection.sendRequest("ConfigureProject", ["ConfigOptions2"]).then((res) => 
-	{
-		writeEmitter.fire((res as string).toString());
-	});
-	
 	connection.sendRequest("ConfigureProjectAuth", [new AuthOptions(AuthTypes.QS, "IntegratorKey")]).then((res) => 
 	{
 		writeEmitter.fire((res as string).toString());
@@ -61,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 const AuthTypes = {
     CodeGrant: 0,
-    JWT: 1,
+	JWT: 1,
     QS: 2
 }
 class AuthOptions{
@@ -72,12 +66,6 @@ class AuthOptions{
 		this.AuthType = authType;
 		this.IntegratorKey = integratorKey;
 	}
-}
-
-function outputResult(res: any)
-{
-	const writeEmitter = new vscode.EventEmitter<string>();
-	writeEmitter.fire((res as number).toString());
 }
 
 function colorText(text: string): string {
