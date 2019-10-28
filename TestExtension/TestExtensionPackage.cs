@@ -29,7 +29,8 @@ namespace TestExtension
 		/// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
 		protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
 		{
-			await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            AssemblyResolver.Redirect();
+            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 			InversionContainer.Instance.Register<ISampleInjector>(new SampleInjector.SampleInjector());
 			IMenuCommandService commandService = await this.GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
 			await CommandsProvider.InitializeCommandsAsync(commandService, this);

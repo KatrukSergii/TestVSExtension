@@ -45,6 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AssemblyResolver.cs" />
     <Compile Include="Commands\CommandsProvider.cs" />
     <Compile Include="Commands\Handlers\AddCustomClassHandler.cs" />
     <Compile Include="Commands\Handlers\CommandHandlerBase.cs" />
@@ -88,6 +89,10 @@
     <Content Include="Resources\AddClassCommand.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Extension.Core\Extension.Core.csproj">
+      <Project>{587b2a91-ed0e-4548-876a-68187ac20128}</Project>
+      <Name>Extension.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleInjector\SampleInjector.csproj">
       <Project>{99180204-502d-4d5c-a7c4-3fcb2414919b}</Project>
       <Name>SampleInjector</Name>

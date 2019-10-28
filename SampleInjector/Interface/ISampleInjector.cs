@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualStudio.Shell;
-using SystemTask = System.Threading.Tasks.Task;
+﻿using System.Threading.Tasks;
 
 namespace SampleInjector.Interface
 {
     public interface ISampleInjector
 	{
-        SystemTask InjectSampleAsync(string sampleId, string solutionFilePath, IAsyncServiceProvider serviceProvider);
-	}
+        Task InjectSampleAsync(string projFilePath);
+
+    }
 }

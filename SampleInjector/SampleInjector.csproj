@@ -14,8 +14,6 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.10" />
     <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="2.10" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="2.10" />
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.202" />
-    <PackageReference Include="NuGet.VisualStudio" Version="5.3.0" />
   </ItemGroup>
 
   <ItemGroup>
