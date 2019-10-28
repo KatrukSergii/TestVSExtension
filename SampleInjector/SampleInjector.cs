@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.MSBuild;
 using SampleInjector.Exceptions;
+using SampleInjector.Extensions;
 using SampleInjector.Interface;
 
 namespace SampleInjector
@@ -55,7 +56,7 @@ namespace SampleInjector
             var solution = await msWorkspace.OpenSolutionAsync(solutionFilePath);
             return solution.Projects.FirstOrDefault(proj => proj.FilePath == selectedProjectFullName);
 
-        }
+		}
 
         //var msWorkspace = MSBuildWorkspace.Create();
         //List<string> ignorDocumentNames = new List<string>
